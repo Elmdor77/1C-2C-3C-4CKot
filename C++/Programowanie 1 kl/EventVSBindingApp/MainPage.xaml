@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventVSBindingApp.MainPage">
+    <StackLayout>
+
+        <Slider 
+            x:Name="RotationSlider"
+            Maximum="360"
+            MaximumTrackColor="MediumVioletRed"
+            Minimum="0"
+            MinimumTrackColor="NavajoWhite"
+            ValueChanged="Slider_ValueChanged"
+            Value="180"/>
+        <Label 
+            x:Name="RotationLabel"
+            Margin="60"
+            HorizontalOptions="Center"
+            Rotation="90"/>
+        <Label 
+            Margin="60"
+            HorizontalOptions="Center"
+            Rotation="{Binding Source={x:Reference RotationSlider}, Path=Value}"
+            Text="{Binding Source={x:Reference RotationSlider}, Path=Value}"/>
+
+    </StackLayout>
+
+</ContentPage>
