@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EventVSBindingApp.MainPage">
+             x:Class="EventVSBindingApp.MainPage"
+             x:Name="thisPage">
     <StackLayout>
 
         <Slider 
@@ -16,12 +17,30 @@
             x:Name="RotationLabel"
             Margin="60"
             HorizontalOptions="Center"
-            Rotation="90"/>
+            Rotation="90"
+            Text = "halo"/>
         <Label 
             Margin="60"
             HorizontalOptions="Center"
             Rotation="{Binding Source={x:Reference RotationSlider}, Path=Value}"
             Text="{Binding Source={x:Reference RotationSlider}, Path=Value}"/>
+        <Label 
+            Margin="60"
+            HorizontalOptions="Center"
+            BindingContext="{x:Reference RotationSlider}"
+            Rotation="{Binding Path=Value}"
+            Text="{Binding Value}"/>
+
+        <Label Text="Napisz coś" />
+        <Entry x:Name="podajEntry"/>
+        <Button Text="Pokasz coś"
+                Clicked="Button_Clicked"/>
+        <Label x:Name="pokaszLabel"/>
+
+        <Label Text="Napisz coś" />
+        <Entry Text="{Binding Message, Source={x:Reference thisPage}}"/>
+        <Button Text="Pokasz coś" Clicked="Button_Clicked_1"/>
+        <Label Text="{Binding ReturnMessage, Source={x:Reference thisPage}}"/>
 
     </StackLayout>
 
