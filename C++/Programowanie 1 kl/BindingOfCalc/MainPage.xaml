@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BindingOfCalc.MainPage"
+             x:Name="thisPage">
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label Text="Napisz cos" />
+            <Entry Text="{Binding FirstNumber, Source={x:Reference thisPage}}"/>
+            <Label Text="Napisz cos" />
+            <Entry Text="{Binding SecondNumber, Source={x:Reference thisPage}}"/>
+
+
+
+            <Button Clicked="Button_Clicked" Text="Halo"/>
+            <Label Text="{Binding GetResult, Source={x:Reference thisPage}}"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
