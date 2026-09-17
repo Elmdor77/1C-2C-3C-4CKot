@@ -8,7 +8,7 @@
         <VerticalStackLayout>
             <Label Text="Napisz cos" />
             <Entry Text="{Binding FirstNumber, Source={x:Reference thisPage}}"/>
-            <Label Text="Napisz cos" />
+            <Label Text="Napisz cos" /> 
             <Entry Text="{Binding SecondNumber, Source={x:Reference thisPage}}"/>
 
 
