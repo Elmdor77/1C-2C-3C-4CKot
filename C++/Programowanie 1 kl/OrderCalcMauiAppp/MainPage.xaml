@@ -7,14 +7,14 @@
 
     <ScrollView>
         <VerticalStackLayout>
-            <Entry Placeholder="Nazwa produktu" x:Name="nazwa"></Entry>
-            <Entry Placeholder="Cena produktu" x:Name="cena"></Entry>
-            <Stepper Increment="1" Minimum="1" Maximum="10" Value="{Binding stepperValue}"></Stepper>
+            <Entry Placeholder="Nazwa produktu" x:Name="nazwa" Text="{Binding nazwa}"></Entry>
+            <Entry Placeholder="Cena produktu" x:Name="cena" Text="{Binding cena}"></Entry>
+            <Stepper Increment="1" Minimum="1" Maximum="10" Value="{Binding ilosc}"></Stepper>
             <Label Text="{Binding stepperValue}"></Label>
             <Switch IsToggled="{Binding isOn}" ></Switch>
-            <Button Text="Oblicz" Clicked="Button_Clicked"></Button>
             <Label Text="{Binding isOn}" ></Label>
-            <Label></Label>
+            <Button Text="Oblicz" Clicked="Button_Clicked"></Button>
+            <Label Text="{Binding showSum}" x:Name="Wynik"></Label>
 
         </VerticalStackLayout>
     </ScrollView>

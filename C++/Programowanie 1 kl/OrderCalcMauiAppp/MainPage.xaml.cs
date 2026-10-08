@@ -32,6 +32,7 @@ Dla chętnych: zamiast przełącznika dostawy ekspresowej dodaj Picker, który p
 Wybrany sposób dostawy uwzględnij podczas obliczania końcowej ceny zamówienia.
 */
 
+
 namespace OrderCalcMauiAppp
 {
     public partial class MainPage : ContentPage
@@ -41,11 +42,23 @@ namespace OrderCalcMauiAppp
         {
             InitializeComponent();
         }
-        private int Stepper;
-        public int stepperValue 
+        private string Nazwa;
+        public string nazwa
         {
-            get {return Stepper; } 
-            set {Stepper = value; OnPropertyChanged(); }
+            get { return Nazwa; }
+            set { Nazwa = value; OnPropertyChanged(); }
+        }
+        private string Cena;
+        public string cena
+        {
+            get { return Cena; }
+            set { Cena = value; OnPropertyChanged(); }
+        }
+        private string Ilosc;
+        public string ilosc
+        {
+            get { return Ilosc; } 
+            set { Ilosc = value; OnPropertyChanged(); }
         }
         private bool on;
         public bool isOn
@@ -53,9 +66,27 @@ namespace OrderCalcMauiAppp
             get { return on; }
             set { on = value; OnPropertyChanged(); }
         }
-        private void Button_Clicked(object sender, EventArgs e)
-        {
 
+        private string Sum;
+        public string showSum
+        {
+            get { return Sum; }
+            set { Sum = value; OnPropertyChanged(); }
+        }
+        public void Button_Clicked(object sender, EventArgs e)
+        {
+            if (int.TryParse(ilosc, out int iloscPrzedmiotu)
+                    && int.TryParse(cena, out int cenaPrzedmiotu))
+            {
+                Sum = $"{iloscPrzedmiotu * cenaPrzedmiotu}";
+
+
+            }
+            else
+            {
+                Sum  = "Źle wpisane dane";
+
+            }
         }
     }
 }
