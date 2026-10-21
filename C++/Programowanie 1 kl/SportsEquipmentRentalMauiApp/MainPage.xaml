@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SportsEquipmentRentalMauiApp.MainPage"
+             BindingContext="{x:Reference thisPage}">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <CollectionView Footer="Sprzęty"
+                            ItemsSource="{Binding CarsCollection}"
+                            SelectedItem="{Binding SelectedCar}"
+                            SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding Name}" />
+                            <Label FontAttributes="Italic" Text="{Binding Description}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Entry Placeholder="Imie_nazwisko"></Entry>
+
+            <Stepper Increment="1"
+                 Minimum="1"
+                 Maximum="7">
+                
+            </Stepper>
+            <Label Text=""></Label>
+            <CheckBox></CheckBox>
+            <Button></Button>
+            <Label></Label>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
