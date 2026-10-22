@@ -67,19 +67,13 @@ if (secondFunc is not null)
 
 
 Console.WriteLine($"Wartość maksymalna: {GetMax<int>(2, 8, cmpInt)}");
-Console.WriteLine($"Wartość maksymalna: {GetMax<int>(2,
-                                                     8,
-                                                     (x, y) => x > y
-                                                     )}");
+Console.WriteLine($"Wartość maksymalna: {GetMax<int>(2,8,(x, y) => x > y)}");
 Console.WriteLine($"Wartość maksymalna: {GetMax(2.8, 1.8, cmpDouble)}");
 Console.WriteLine($"Wartość maksymalna: {GetMax(2.8, 1.8, (x, y) => x > y)}");
 Console.WriteLine($"Wartość maksymalna: {GetMax(2.8, 2, (x, y) => x > 2 * y)}");
 
 Console.WriteLine($"Wartość maksymalna: {GetMax/*<Test>*/(t1, t2, cmpTest).MyProperty}");
-Console.WriteLine($"Wartość maksymalna: {GetMax(t1,
-                                                t2,
-                                                (x, y) => x.MyProperty > y.MyProperty
-                                                ).MyProperty}");
+Console.WriteLine($"Wartość maksymalna: {GetMax(t1,t2,(x, y) => x.MyProperty > y.MyProperty).MyProperty}");
 
 bool cmpInt(int x, int y)
 {

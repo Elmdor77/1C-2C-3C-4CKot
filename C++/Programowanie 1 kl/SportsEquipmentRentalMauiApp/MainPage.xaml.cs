@@ -49,42 +49,68 @@ Ubezpieczenie: 3 × 5 zł = 15 zł
 //using SportsEquipmentRentalMauiApp.Data;
 using System.Collections.ObjectModel;
 
-
 namespace SportsEquipmentRentalMauiApp
 {
-    internal class Car
+    public class Equipment
     {
-        public Car()
-        {
-        }
-
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public int PricePerDay { get; set; }
     }
-    public partial class MainPage : ContentPage
-    { /*
 
-        public ObservableCollection<Car> CarsCollection { get; set; }
-        private Car selectedCar;
-        public Car SelectedCar
+    public partial class MainPage : ContentPage
+    {
+        private const int InsurancePerDay = 5;
+
+        private readonly ObservableCollection<Equipment> _equipment = new()
         {
-            get { return selectedCar; }
-            set { selectedCar = value; OnPropertyChanged(); }
-        }
+            new Equipment { Name = "Rower",      PricePerDay = 40 },
+            new Equipment { Name = "Hulajnoga",  PricePerDay = 30 },
+            new Equipment { Name = "Rolki",      PricePerDay = 20 },
+            new Equipment { Name = "Kajak",      PricePerDay = 50 },
+        };
 
         public MainPage()
         {
-            
-            CarsCollection = new ObservableCollection<Car>()
-        {
-            new Car(){ Name="Fiat", Description = "Kultowy mały fiat"},
-            new Car(){ Name="Audi", Description = "A tutaj jego opis"},
-        };
-            SelectedCar = CarsCollection.First();
-
             InitializeComponent();
-        }*/
+            EquipmentCollection.ItemsSource = _equipment;
+        }
+
+        private void OnCalculateClicked(object? sender, EventArgs e)
+        {
+            string customer = CustomerEntry.Text?.Trim() ?? string.Empty;
+
+            if (string.IsNullOrWhiteSpace(customer))
+            {
+                SummaryLabel.Text = "Podaj imię i nazwisko klienta.";
+                return;
+            }
+
+            if (EquipmentCollection.SelectedItem is not Equipment selected)
+            {
+                SummaryLabel.Text = "Wybierz sprzęt z listy.";
+                return;
+            }
+
+            int days = (int)DaysStepper.Value;
+            bool insured = InsuranceCheckBox.IsChecked;
+
+            int equipmentCost = days * selected.PricePerDay;
+            int insuranceCost = insured ? days * InsurancePerDay : 0;
+            int total = equipmentCost + insuranceCost;
+
+            string text =
+                $"Klient: {customer}\n" +
+                $"Sprzęt: {selected.Name}\n" +
+                $"Liczba dni: {days}\n" +
+                $"Ubezpieczenie: {(insured ? "TAK" : "NIE")}\n" +
+                $"Koszt sprzętu: {days} × {selected.PricePerDay} zł = {equipmentCost} zł\n";
+
+            if (insured)
+                text += $"Ubezpieczenie: {days} × {InsurancePerDay} zł = {insuranceCost} zł\n";
+
+            text += $"Łącznie: {total} zł";
+
+            SummaryLabel.Text = text;
+        }
     }
-
-
 }

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SportsEquipmentRentalMauiApp"
+             x:Class="SportsEquipmentRentalMauiApp.MainPage"
+             Title="Wypożyczalnia">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+
+            <Label Text="Wybierz sprzęt" FontSize="20" FontAttributes="Bold" />
+
+            <CollectionView x:Name="EquipmentCollection"
+                            SelectionMode="Single"
+                            HeightRequest="220">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Equipment">
+                        <Grid Padding="10" ColumnDefinitions="*,Auto">
+                            <Label Grid.Column="0"
+                                   Text="{Binding Name}"
+                                   FontSize="18"
+                                   VerticalOptions="Center" />
+                            <Label Grid.Column="1"
+                                   Text="{Binding PricePerDay, StringFormat='{0} zł / dzień'}"
+                                   FontSize="18"
+                                   VerticalOptions="Center" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Entry x:Name="CustomerEntry"
+                   Placeholder="Imię i nazwisko klienta" />
+
+            <Label Text="Liczba dni wypożyczenia" />
+            <Stepper x:Name="Days"
+                     Minimum="1"
+                     Maximum="7"
+                     Increment="1"
+                     Value="1" />
+            <Label Text="{Binding Source={x:Reference Days}, Path=Value, StringFormat='Liczba dni: {0:0}'}"
+                   FontSize="18" />
+
+            <HorizontalStackLayout Spacing="8">
+                <CheckBox x:Name="InsuranceCheckBox" />
+                <Label Text="Ubezpieczenie (5 zł / dzień)"
+                       VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <Button Text="Oblicz koszt"
+                    Clicked="Calculate" />
+
+            <Label x:Name="SummaryLabel"
+                   FontSize="18"
+                   Text="" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
